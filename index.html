@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Text Display</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 50px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Dynamic Text Display</h1>
+    <p id="dynamicText">Loading...</p>
+
+    <script>
+        // Get the current URL
+        const url = new URL(window.location.href);
+
+        // Extract the path and query string from the URL
+        const path = url.pathname.substring(1); // Remove the leading '/'
+        const query = url.searchParams.toString(); // Get query parameters as a string
+
+        // Combine path and query string
+        let displayText = path;
+
+        if (query) {
+            displayText += `?${query}`;
+        }
+
+        // Default to "Home" if the path is empty
+        if (!displayText) {
+            displayText = "Home";
+        }
+
+        // Replace hyphens with spaces for better readability
+        displayText = displayText.replace(/-/g, ' ');
+
+        // Set the text content of the paragraph element
+        document.getElementById('dynamicText').textContent = displayText;
+    </script>
+
+</body>
+</html>
